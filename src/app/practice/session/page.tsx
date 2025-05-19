@@ -1,7 +1,7 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
-import { FaVideo, FaMicrophone, FaVideoSlash, FaMicrophoneSlash, FaThumbsUp, FaThumbsDown, FaTimes, FaCheck, FaFire } from 'react-icons/fa';
+import React, { useState, useEffect, useCallback } from 'react';
+import { FaVideo, FaMicrophone, FaVideoSlash, FaMicrophoneSlash, FaTimes, FaCheck, FaFire } from 'react-icons/fa';
 import Layout from '@/components/layout/Layout';
 
 const questionCards = [
@@ -35,7 +35,7 @@ const evaluationCriteria = [
     { id: 'pronunciation', name: 'Pronunciation' }
 ];
 
-export default function PracticeSession() {
+export default function PracticeSession(): React.ReactElement {
     const [isMobile, setIsMobile] = useState(false);
     const [currentCardIndex, setCurrentCardIndex] = useState(0);
     const [isMyTurn, setIsMyTurn] = useState(true);
@@ -63,6 +63,16 @@ export default function PracticeSession() {
         };
     }, []);
 
+    const nextTurn = useCallback(() => {
+        if (currentCardIndex < questionCards.length - 1) {
+            setCurrentCardIndex(currentCardIndex + 1);
+        } else {
+            setShowEvaluation(true);
+        }
+        setIsMyTurn(!isMyTurn);
+        setTimeRemaining(120);
+    }, [currentCardIndex, isMyTurn]);
+
     useEffect(() => {
         if (timeRemaining > 0 && isMyTurn) {
             const timer = setTimeout(() => {
@@ -72,17 +82,17 @@ export default function PracticeSession() {
         } else if (timeRemaining === 0) {
             nextTurn();
         }
-    }, [timeRemaining, isMyTurn]);
+    }, [timeRemaining, isMyTurn, nextTurn]);
 
-    const nextTurn = () => {
-        if (currentCardIndex < questionCards.length - 1) {
-            setCurrentCardIndex(currentCardIndex + 1);
-        } else {
-            setShowEvaluation(true);
+    useEffect(() => {
+        if (isMyTurn) {
+            const timer = setTimeout(() => {
+                nextTurn();
+            }, 60000);
+
+            return () => clearTimeout(timer);
         }
-        setIsMyTurn(!isMyTurn);
-        setTimeRemaining(120);
-    };
+    }, [isMyTurn, nextTurn]);
 
     const formatTime = (seconds: number) => {
         const mins = Math.floor(seconds / 60);
@@ -133,7 +143,7 @@ export default function PracticeSession() {
                             </h1>
                             <div className={`${isMyTurn ? 'bg-accent' : 'bg-accent2'} text-white py-1 px-3 rounded-full text-sm font-semibold flex items-center gap-1`}>
                                 {isMyTurn ? <FaMicrophone /> : <FaCheck />}
-                                {isMyTurn ? 'Your Turn' : 'Partner\'s Turn'}
+                                {isMyTurn ? 'Your Turn' : 'Partner&apos;s Turn'}
                             </div>
                         </div>
 
@@ -212,7 +222,7 @@ export default function PracticeSession() {
                                             onClick={nextTurn}
                                             className="w-full bg-primary text-white py-3 px-4 rounded-lg border-none font-semibold flex items-center justify-center gap-2"
                                         >
-                                            I'm Finished <FaCheck />
+                                            I&apos;m Finished <FaCheck />
                                         </button>
                                     )}
                                 </div>

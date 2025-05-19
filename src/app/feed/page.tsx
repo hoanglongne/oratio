@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FaPlay, FaComment, FaStar, FaThumbsUp, FaFilter, FaSearch, FaUpload, FaChevronDown } from 'react-icons/fa';
+import { FaPlay, FaComment, FaStar, FaThumbsUp, FaFilter, FaSearch, FaUpload } from 'react-icons/fa';
 import Layout from '@/components/layout/Layout';
 
 const feedItems = [

@@ -170,12 +170,6 @@ export default function Topics() {
         return true;
     });
 
-    const getCategoryColor = (category: string) => {
-        if (category === 'part1') return 'text-accent2 bg-blue-50 border-blue-200';
-        if (category === 'part2') return 'text-accent bg-red-50 border-red-200';
-        return 'text-primary bg-neutral-100 border-neutral-200';
-    };
-
     const getDifficultyColor = (difficulty: string) => {
         if (difficulty === 'Easy') return 'text-green-500 bg-green-50 border-green-200';
         if (difficulty === 'Medium') return 'text-amber-500 bg-amber-50 border-amber-200';

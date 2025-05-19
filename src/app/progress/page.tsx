@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FaChartLine, FaCalendarAlt, FaStar, FaArrowUp, FaArrowDown, FaMinus, FaChartBar, FaTrophy } from 'react-icons/fa';
+import { FaCalendarAlt, FaStar, FaArrowUp, FaArrowDown, FaMinus, FaChartBar, FaTrophy } from 'react-icons/fa';
 import Layout from '@/components/layout/Layout';
 
 const progressData = {

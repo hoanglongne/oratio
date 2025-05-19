@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef } from 'react';
 import { v4 as uuidv4 } from 'uuid';
-import { FaMicrophone, FaMicrophoneSlash, FaVideo, FaVideoSlash, FaPhone, FaCheck } from 'react-icons/fa';
+import { FaMicrophone, FaMicrophoneSlash, FaVideo, FaVideoSlash, FaCheck } from 'react-icons/fa';
 import Layout from '@/components/layout/Layout';
 import { initializeWebRTC } from '@/lib/webrtc';
 import { initializeSocket, joinRoom } from '@/lib/socket';
@@ -23,7 +23,6 @@ export default function NewPracticeSession(): React.ReactElement {
     const [currentRound, setCurrentRound] = useState<number>(0);
     const [currentQuestion, setCurrentQuestion] = useState<string>('');
     const [showEvaluation, setShowEvaluation] = useState<boolean>(false);
-    const [isMobile, setIsMobile] = useState<boolean>(false);
 
     const localVideoRef = useRef<HTMLVideoElement>(null);
     const remoteVideoRef = useRef<HTMLVideoElement>(null);
@@ -49,14 +48,6 @@ export default function NewPracticeSession(): React.ReactElement {
     useEffect(() => {
         // Generate a unique session ID
         setSessionId(uuidv4());
-
-        // Check if mobile
-        const checkIfMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        checkIfMobile();
-        window.addEventListener('resize', checkIfMobile);
 
         // Initialize WebRTC
         const setupWebRTC = async (): Promise<void> => {
@@ -85,7 +76,6 @@ export default function NewPracticeSession(): React.ReactElement {
                     track.stop();
                 });
             }
-            window.removeEventListener('resize', checkIfMobile);
         };
     }, []);
 
@@ -129,7 +119,7 @@ export default function NewPracticeSession(): React.ReactElement {
 
         // Simulate finding a match after 3 seconds
         setTimeout(() => {
-            const socket = initializeSocket();
+            initializeSocket();
             const userId = uuidv4();
             joinRoom(sessionId, userId);
 

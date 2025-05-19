@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Inter } from 'next/font/google';
 import { FaCog } from 'react-icons/fa';
 import Link from 'next/link';
@@ -11,21 +11,6 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkIfMobile = () => {
-            setIsMobile(window.innerWidth < 768);
-        };
-
-        checkIfMobile();
-        window.addEventListener('resize', checkIfMobile);
-
-        return () => {
-            window.removeEventListener('resize', checkIfMobile);
-        };
-    }, []);
-
     return (
         <div className={`min-h-screen flex flex-col ${inter.className}`}>
             {/* Top Navigation Bar */}
@@ -47,25 +32,25 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
                             </Link>
                             <Link
                                 href="/practice"
-                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
+                                className="text-sm text-primaryHeader hover:text-accent2 transition-colors duration-200"
                             >
                                 Practice
                             </Link>
                             <Link
                                 href="/feed"
-                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
+                                className="text-sm text-primaryHeader hover:text-accent2 transition-colors duration-200"
                             >
                                 Community
                             </Link>
                             <Link
                                 href="/progress"
-                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
+                                className="text-sm text-primaryHeader hover:text-accent2 transition-colors duration-200"
                             >
                                 Progress
                             </Link>
                             <Link
                                 href="/topics"
-                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
+                                className="text-sm text-primaryHeader hover:text-accent2 transition-colors duration-200"
                             >
                                 Topics
                             </Link>
