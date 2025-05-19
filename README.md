@@ -1,36 +1,64 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Oratio - IELTS Speaking Practice Platform
+
+Oratio is a web application designed to help users practice for the IELTS speaking test by connecting them with other test-takers for structured practice sessions.
+
+## Features
+
+- **Random Partner Matching**: Get matched with other IELTS test-takers based on target band score, topics, and more
+- **Structured Practice Sessions**: Practice with real IELTS-style questions across all three parts of the speaking test
+- **Peer Evaluation**: Receive feedback and band scores from your practice partners
+- **Progress Tracking**: Monitor your improvement over time with detailed analytics
+- **Community Feed**: Share your practice sessions and learn from others in the community
+- **Topic Library**: Access a comprehensive library of IELTS speaking topics and sample questions
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Node.js 18.0.0 or higher
+- npm or yarn
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Installation
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/oratio.git
+   cd oratio
+   ```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn install
+   ```
 
-## Learn More
+3. Run the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
 
-To learn more about Next.js, take a look at the following resources:
+4. Open [http://localhost:3000](http://localhost:3000) in your browser to see the application.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Tech Stack
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- **Frontend**: Next.js, React, TypeScript
+- **Styling**: CSS-in-JS with inline styles, CSS variables
+- **Icons**: React Icons
+- **Design System**: Custom design system with primary (#1e2d3c), accent (#217592), and highlight (#da2761) colors
 
-## Deploy on Vercel
+## Project Structure
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `src/app`: Next.js app router pages
+- `src/components`: Reusable React components
+- `src/lib`: Utility functions and shared code
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+## License
+
+This project is licensed under the MIT License - see the LICENSE file for details.
