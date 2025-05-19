@@ -20,26 +20,6 @@
   --border: #e5e5e5;
 }
 
-.dark {
-  --background: #0f172a;
-  --foreground: #ffffff;
-  --heading-main: #e2e8f0;
-  --heading-card: #e2e8f0;
-  --primary: #1e2d3c;
-  --primary-foreground: #ffffff;
-  --secondary: #38bdf8;
-  --secondary-foreground: #ffffff;
-  --accent: #f472b6;
-  --accent-foreground: #ffffff;
-  --accent2: #38bdf8;
-  --accent2-foreground: #ffffff;
-  --muted: #1e293b;
-  --muted-foreground: #cbd5e1;
-  --card: #1e293b;
-  --card-foreground: #ffffff;
-  --border: #1e293b;
-  --primaryText: #ececec;
-}
 
 /* For system preference dark mode support */
 @media (prefers-color-scheme: dark) {
@@ -218,4 +198,8 @@ h6 {
 
 .border-accent2 {
   border-color: var(--accent2);
+}
+
+.bg-nav {
+  background-color: var(--card);
 }

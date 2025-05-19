@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Inter } from 'next/font/google';
-import { FaHome, FaVideo, FaUsers, FaCog, FaGraduationCap, FaChartBar } from 'react-icons/fa';
+import { FaCog } from 'react-icons/fa';
 import Link from 'next/link';
 import ThemeToggle from '../ThemeToggle';
 
@@ -18,121 +18,75 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             setIsMobile(window.innerWidth < 768);
         };
 
-        // Initial check
         checkIfMobile();
-
-        // Add event listener
         window.addEventListener('resize', checkIfMobile);
 
-        // Cleanup
         return () => {
             window.removeEventListener('resize', checkIfMobile);
         };
     }, []);
 
     return (
-        <div className={`min-h-screen flex ${inter.className}`}>
-            {/* Sidebar */}
-            <div className="bg-primary text-white flex flex-col" style={{
-                width: isMobile ? '4rem' : '16rem'
-            }}>
-                <div className="p-4 flex items-center" style={{
-                    justifyContent: isMobile ? 'center' : 'flex-start'
-                }}>
-                    {!isMobile && (
-                        <h1 className="text-xl font-bold text-white">IELTS Oratio</h1>
-                    )}
-                </div>
-                <nav className="flex-grow mt-6">
-                    <ul className="flex flex-col gap-2">
-                        <li>
+        <div className={`min-h-screen flex flex-col ${inter.className}`}>
+            {/* Top Navigation Bar */}
+            <div className="fixed top-6 left-1/2 transform -translate-x-1/2 z-50 w-[90%] max-w-3xl">
+                <div className="bg-nav rounded-2xl border border-accent2/20">
+                    <div className="flex items-center justify-between px-6 py-3">
+                        {/* Logo */}
+                        <div className="flex items-center">
+                            <h1 className="text-lg font-bold text-white">IELTS Oratio</h1>
+                        </div>
+
+                        {/* Navigation Links */}
+                        <nav className="hidden md:flex items-center space-x-6 font-semibold">
                             <Link
                                 href="/"
-                                className="flex items-center px-4 py-3 rounded-lg"
-                                style={{
-                                    justifyContent: isMobile ? 'center' : 'flex-start'
-                                }}
+                                className="text-sm text-primaryHeader hover:text-accent2 transition-colors duration-200"
                             >
-                                <FaHome className="text-accent2" style={{ marginRight: isMobile ? 0 : '0.75rem' }} />
-                                {!isMobile && <span>Home</span>}
+                                Home
                             </Link>
-                        </li>
-                        <li>
                             <Link
                                 href="/practice"
-                                className="flex items-center px-4 py-3 rounded-lg"
-                                style={{
-                                    justifyContent: isMobile ? 'center' : 'flex-start'
-                                }}
+                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
                             >
-                                <FaVideo className="text-accent2" style={{ marginRight: isMobile ? 0 : '0.75rem' }} />
-                                {!isMobile && <span>Practice Speaking</span>}
+                                Practice
                             </Link>
-                        </li>
-                        <li>
                             <Link
                                 href="/feed"
-                                className="flex items-center px-4 py-3 rounded-lg"
-                                style={{
-                                    justifyContent: isMobile ? 'center' : 'flex-start'
-                                }}
+                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
                             >
-                                <FaUsers className="text-accent2" style={{ marginRight: isMobile ? 0 : '0.75rem' }} />
-                                {!isMobile && <span>Community Feed</span>}
+                                Community
                             </Link>
-                        </li>
-                        <li>
                             <Link
                                 href="/progress"
-                                className="flex items-center px-4 py-3 rounded-lg"
-                                style={{
-                                    justifyContent: isMobile ? 'center' : 'flex-start'
-                                }}
+                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
                             >
-                                <FaChartBar className="text-accent2" style={{ marginRight: isMobile ? 0 : '0.75rem' }} />
-                                {!isMobile && <span>My Progress</span>}
+                                Progress
                             </Link>
-                        </li>
-                        <li>
                             <Link
                                 href="/topics"
-                                className="flex items-center px-4 py-3 rounded-lg"
-                                style={{
-                                    justifyContent: isMobile ? 'center' : 'flex-start'
-                                }}
+                                className="text-sm text-primaryHeader  hover:text-accent2 transition-colors duration-200"
                             >
-                                <FaGraduationCap className="text-accent2" style={{ marginRight: isMobile ? 0 : '0.75rem' }} />
-                                {!isMobile && <span>Topics</span>}
+                                Topics
                             </Link>
-                        </li>
-                        <li>
-                            <Link
-                                href="/settings"
-                                className="flex items-center px-4 py-3 rounded-lg"
-                                style={{
-                                    justifyContent: isMobile ? 'center' : 'flex-start'
-                                }}
-                            >
-                                <FaCog className="text-accent2" style={{ marginRight: isMobile ? 0 : '0.75rem' }} />
-                                {!isMobile && <span>Settings</span>}
-                            </Link>
-                        </li>
-                    </ul>
-                </nav>
-                <div className="p-4 mt-auto flex flex-col gap-4">
-                    <ThemeToggle />
-                    {!isMobile && (
-                        <div className="bg-primaryLight p-3 rounded-lg">
-                            <p className="text-sm text-accent2">Available Credits</p>
-                            <p className="text-lg font-bold text-white">15</p>
+                        </nav>
+
+                        {/* Right Side Controls */}
+                        <div className="flex items-center space-x-4">
+                            <ThemeToggle />
+
+                            {/* Mobile Menu Button */}
+                            <button className="md:hidden p-1.5 rounded-lg hover:bg-accent2/10 transition-colors duration-200">
+                                <FaCog className="text-accent2 text-sm" />
+                            </button>
                         </div>
-                    )}
+                    </div>
                 </div>
             </div>
 
-            {/* Main content */}
-            <div className="flex-grow bg-background text-foreground">
-                <main className="p-6">{children}</main>
+            {/* Main content with increased top padding */}
+            <div className="flex-grow bg-background text-foreground pt-28">
+                <main className="px-8 py-6 max-w-7xl mx-auto">{children}</main>
             </div>
         </div>
     );
