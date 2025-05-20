@@ -131,7 +131,7 @@ export default function PracticeSession(): React.ReactElement {
 
     return (
         <Layout>
-            <div className="max-w-5xl mx-auto">
+            <div className="max-w-7xl mx-auto">
                 {!showEvaluation ? (
                     <>
                         <div className="flex justify-between items-center mb-4">
@@ -147,9 +147,9 @@ export default function PracticeSession(): React.ReactElement {
                             </div>
                         </div>
 
-                        <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-3'} gap-6`}>
-                            <div className="col-span-2">
-                                <div className="bg-primary rounded-lg overflow-hidden aspect-video relative border border-white">
+                        <div className={`grid ${isMobile ? 'grid-cols-1' : 'grid-cols-4'} gap-6`}>
+                            <div className="col-span-3">
+                                <div className="bg-primary rounded-lg overflow-hidden aspect-video relative border border-white h-[calc(75vh-120px)] min-h-[450px]">
                                     {/* Main video area */}
                                     <div className="absolute top-4 right-4 bg-black/50 text-white py-1 px-3 rounded-full text-sm font-semibold flex items-center gap-1">
                                         <span className={`inline-block w-2 h-2 rounded-full ${timeRemaining < 30 ? 'bg-accent animate-pulse' : 'bg-green-500'}`}></span>
@@ -157,7 +157,7 @@ export default function PracticeSession(): React.ReactElement {
                                     </div>
 
                                     {/* Self view */}
-                                    <div className="absolute bottom-4 right-4 w-1/4 aspect-video bg-accent2 rounded-lg border border-white overflow-hidden"></div>
+                                    <div className="absolute bottom-4 right-4 w-1/5 aspect-video bg-accent2 rounded-lg border border-white overflow-hidden shadow-lg"></div>
                                 </div>
 
                                 <div className="flex justify-center gap-4 mt-5">
@@ -181,12 +181,12 @@ export default function PracticeSession(): React.ReactElement {
                                 </div>
                             </div>
 
-                            <div>
-                                <div className={`bg-white p-6 rounded-lg border border-neutral-200 mb-5 ${isMyTurn ? 'transform rotate-1' : ''}`}>
+                            <div className="h-[calc(75vh-120px)] min-h-[450px] flex flex-col overflow-y-auto">
+                                <div className={`bg-white p-5 rounded-lg border border-neutral-200 mb-4 flex-grow-0 ${isMyTurn ? 'transform rotate-1' : ''}`}>
                                     <div className={`inline-block px-3 py-1 rounded-full text-xs font-semibold mb-3 ${getPartClasses(questionCards[currentCardIndex].part)}`}>
                                         {questionCards[currentCardIndex].part} - {questionCards[currentCardIndex].topic}
                                     </div>
-                                    <h2 className="text-lg font-semibold mb-5 text-primary leading-relaxed">
+                                    <h2 className="text-lg font-semibold mb-4 text-primary leading-relaxed">
                                         {questionCards[currentCardIndex].question}
                                     </h2>
                                     <div className="bg-gradient-to-r from-neutral-50 to-blue-50 p-3 rounded-lg text-sm text-neutral-600 border border-dashed border-accent2 relative">
@@ -197,12 +197,12 @@ export default function PracticeSession(): React.ReactElement {
                                     </div>
                                 </div>
 
-                                <div className="bg-white p-6 rounded-lg border border-neutral-200">
-                                    <h3 className="text-lg font-semibold mb-5 text-primary flex items-center gap-2">
+                                <div className="bg-white p-5 rounded-lg border border-neutral-200 flex-shrink-0">
+                                    <h3 className="text-lg font-semibold mb-4 text-primary flex items-center gap-2">
                                         <div className="w-1 h-6 bg-accent2 rounded-full"></div>
                                         Session Progress
                                     </h3>
-                                    <div className="mb-5">
+                                    <div className="mb-4">
                                         <div className="flex justify-between mb-1">
                                             <span className="text-sm text-neutral-600">Question</span>
                                             <span className="text-sm font-semibold text-primary bg-blue-50 py-0.5 px-2 rounded">

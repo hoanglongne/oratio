@@ -1,8 +1,11 @@
+'use client';
+
 import React from 'react';
 import { Inter } from 'next/font/google';
 import { FaCog } from 'react-icons/fa';
 import Link from 'next/link';
-import ThemeToggle from '../ThemeToggle';
+import UserMenu from '../auth/UserMenu';
+import { useSession } from 'next-auth/react';
 
 const inter = Inter({ subsets: ['latin'] });
 
@@ -11,6 +14,8 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
+    const { status } = useSession();
+
     return (
         <div className={`min-h-screen flex flex-col ${inter.className}`}>
             {/* Top Navigation Bar */}
@@ -58,7 +63,19 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
                         {/* Right Side Controls */}
                         <div className="flex items-center space-x-4">
-                            <ThemeToggle />
+                            {/* User Menu or Sign In Link */}
+                            {status === 'authenticated' ? (
+                                <UserMenu />
+                            ) : status === 'unauthenticated' ? (
+                                <Link
+                                    href="/auth/signin"
+                                    className="bg-accent2 text-white text-sm py-1.5 px-3 rounded-lg hover:bg-accent2/90 transition-colors"
+                                >
+                                    Sign In
+                                </Link>
+                            ) : (
+                                <div className="h-8 w-16 bg-accent2/30 animate-pulse rounded-lg"></div>
+                            )}
 
                             {/* Mobile Menu Button */}
                             <button className="md:hidden p-1.5 rounded-lg hover:bg-accent2/10 transition-colors duration-200">
